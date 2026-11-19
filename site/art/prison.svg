@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><filter id="grain"><feTurbulence baseFrequency=".65" numOctaves="3" stitchTiles="stitch"/></filter><radialGradient id="room"><stop stop-color="#a05a21"/><stop offset=".46" stop-color="#433028"/><stop offset="1" stop-color="#0b0e13"/></radialGradient><linearGradient id="steel" x2="0" y2="1"><stop stop-color="#343b40"/><stop offset="1" stop-color="#101316"/></linearGradient><pattern id="stripe" width="40" height="40" patternTransform="rotate(34)" patternUnits="userSpaceOnUse"><path d="M0 0h20v40H0z" fill="#98622a"/></pattern><radialGradient id="lamp"><stop stop-color="#ffcb72" stop-opacity=".8"/><stop offset="1" stop-color="#f97429" stop-opacity="0"/></radialGradient></defs>
+<rect width="1200" height="800" fill="url(#room)"/>
+<path d="M0 0h1200L850 240H350zM0 800h1200L850 566H350z" fill="#252423" stroke="#5b4c38" stroke-width="3"/>
+<path d="M0 810l440-245m-120 245 205-245m355 245L675 565m525 245L760 565M0 720h1200M120 657h960" stroke="#69604c" opacity=".55" fill="none"/>
+<path d="M0 0v800l38 -26V26zM1200 0v800l-38 -26V26z" fill="url(#steel)" stroke="#67625a" stroke-width="2"/><path d="M88 55v690l38 -26V81zM1112 55v690l-38 -26V81z" fill="url(#steel)" stroke="#67625a" stroke-width="2"/><path d="M176 110v580l38 -26V136zM1024 110v580l-38 -26V136z" fill="url(#steel)" stroke="#67625a" stroke-width="2"/><path d="M264 165v470l38 -26V191zM936 165v470l-38 -26V191z" fill="url(#steel)" stroke="#67625a" stroke-width="2"/>
+<path d="M327 601V258l67-72h412l67 72v343Z" fill="#1a1c1e" stroke="#635649" stroke-width="9"/>
+<path d="M365 601V285l55-61h360l55 61v316Z" fill="url(#stripe)" stroke="#121416" stroke-width="9"/>
+<path d="M397 601V300l47-50h312l47 50v301Z" fill="#151414" stroke="#a37250" stroke-width="4"/>
+<path d="M412 585V306l39-42h297l39 42v279Z" fill="url(#steel)"/>
+<path d="M423 331h354M423 510h354M600 268v319" stroke="#816a54" opacity=".7" stroke-width="4"/>
+<path d="M425 569h350" stroke="#bc6e34" stroke-width="5"/>
+<text x="600" y="468" fill="#938878" text-anchor="middle" font-size="120" font-weight="900" font-family="monospace" opacity=".45">01</text>
+<circle cx="600" cy="188" r="160" fill="url(#lamp)"/><path d="M540 187h120" stroke="#ffc579" stroke-width="8"/>
+<circle cx="900" cy="365" r="5" fill="#ff5338"/><circle cx="900" cy="385" r="4" fill="#ffb35e"/>
+<path d="M0 750h1200v20H0z" fill="url(#stripe)" opacity=".4"/><rect width="1200" height="800" filter="url(#grain)" opacity=".12" style="mix-blend-mode:soft-light"/></svg>
