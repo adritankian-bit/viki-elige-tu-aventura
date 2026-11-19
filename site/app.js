@@ -1,27 +1,24 @@
 const adventures = [
   {
-    id: 'prison', number: '01', name: 'Prison Island', lines: ['Prison', 'Island'], art: 'prison.svg',
-    kicker: '¿Aceptas el desafío?', short: 'Retos, competición y risas.',
-    paragraphs: ['Una prisión llena de desafíos donde tendremos que poner a prueba nuestra inteligencia, nuestros reflejos y nuestra capacidad para trabajar en equipo.', 'Habitaciones con pruebas diferentes, retos inesperados y una misión: conseguir tantos puntos como podamos.'],
-    facts: [['Ubicación', 'Benalmádena, Málaga'], ['Tipo', 'Desafíos físicos, mentales y de habilidad'], ['Modalidad', 'Cooperativa y competitiva'], ['Ideal para', 'Reírnos, picarnos y superar retos juntos']],
-    quote: 'Dos jugadores. Un montón de desafíos. ¿Cuántos conseguiremos superar?'
+    id: 'prison', name: 'Prison Island', lines: ['Prison', 'Island'], art: 'prison.svg',
+    place: 'Benalmádena, Málaga',
+    thought: 'Aquí nos vamos a picar.',
+    detail: 'Vamos en equipo de sala en sala. Hay pruebas de reflejos, de fuerza y de pensar. A ver cuántas sacamos.'
   },
   {
-    id: 'arcano', number: '02', name: 'El Amuleto Arcano', lines: ['El Amuleto', 'Arcano'], art: 'arcano.svg',
-    kicker: 'La magia nos está llamando', short: 'Magia, fantasía y misterio.',
-    paragraphs: ['Un mundo lleno de secretos, enigmas y magia nos espera.', 'Tendremos que explorar, investigar y resolver misterios para descubrir los secretos que esconde el Amuleto Arcano. Una aventura donde cada descubrimiento nos acercará un poco más a la verdad.'],
-    facts: [['Ubicación', 'Torrenigma · Torre del Mar, Málaga'], ['Tipo', 'Aventura fantástica y enigmas'], ['Modalidad', 'Experiencia inmersiva para dos'], ['Ideal para', 'Vivir una historia de fantasía juntos']],
-    quote: 'Toda aventura comienza con una elección. Esta podría ser la nuestra.'
+    id: 'arcano', name: 'El Amuleto Arcano', lines: ['El Amuleto', 'Arcano'], art: 'arcano.svg',
+    place: 'Torrenigma · Torre del Mar, Málaga',
+    thought: 'Tú, yo y un amuleto raro.',
+    detail: 'Tenemos que seguir las pistas y averiguar qué esconde. A ver cuánto tardamos en pedir una pista.'
   },
   {
-    id: 'terra', number: '03', name: 'Terra Mítica', lines: ['Terra', 'Mítica'], art: 'terra.svg',
-    kicker: '¿Preparada para gritar?', short: 'Montañas rusas y adrenalina.',
-    paragraphs: ['Esta vez no tendremos que resolver enigmas.', 'Nos esperan montañas rusas, caídas, velocidad y atracciones que pondrán a prueba nuestros nervios. Un día entero para gritar, reírnos y disfrutar de un parque de atracciones de verdad.'],
-    facts: [['Ubicación', 'Benidorm, Alicante'], ['Tipo', 'Parque de atracciones'], ['Experiencia', 'Montañas rusas, adrenalina y diversión'], ['Fecha', 'A concretar durante la próxima temporada de apertura']],
-    quote: 'La aventura más grande. Las caídas más fuertes. Y nosotros dos gritando como idiotas.'
+    id: 'terra', name: 'Terra Mítica', lines: ['Terra', 'Mítica'], art: 'terra.svg',
+    place: 'Benidorm, Alicante',
+    thought: 'Los dos gritando como idiotas.',
+    detail: 'Un día de montañas rusas y de decir «venga, otra vez».',
+    note: 'Cuando abra la próxima temporada, buscamos fecha.'
   }
 ];
-
 const artwork = (item) => './art/' + item.art;
 const chapters = document.querySelector('#chapters');
 chapters.innerHTML = adventures.map((item) => `
@@ -32,16 +29,20 @@ chapters.innerHTML = adventures.map((item) => `
         <div class="effect"></div>
         ${item.id === 'terra' ? '<svg class="ride" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice"><path id="rail" d="M0 552c163 2 190-375 383-281 115 56 88 229 243 219 109-7 106-174 213-172 111 2 122 214 361 153" fill="none"/><g id="train"><path d="M-31-5h59l7-11-7-8H-31z" fill="#b94e38" stroke="#ffcf8b" stroke-width="2"/><path d="M-26-17h12m7 0H5m7 0h12" stroke="#f7d8a4" stroke-width="4"/></g></svg>' : ''}
       </div>
-      <div class="title-block">
-        <p class="kicker">${item.number} / ${item.kicker}</p>
+    </div>
+    <div class="chapter-beats">
+      <div class="title-block beat">
+        <p class="kicker">${item.place}</p>
         <h2 id="${item.id}-title">${item.lines.join('<br>')}</h2>
       </div>
-    </div>
-    <div class="story">
-      <div class="story-copy">${item.paragraphs.map((p) => '<p>' + p + '</p>').join('')}
-      ${item.id === 'prison' ? '<div class="score" aria-hidden="true">MARCADOR DE PRUEBA <span>000</span></div>' : ''}</div>
-      <dl>${item.facts.map(([label, value]) => '<div><dt>' + label + '</dt><dd>' + value + '</dd></div>').join('')}</dl>
-      <blockquote>«${item.quote}»</blockquote>
+      <div class="beat detail-beat">
+        <div class="detail-copy">
+          <h3>${item.thought}</h3>
+          <p>${item.detail}</p>
+          ${item.note ? '<p class="visit-note">' + item.note + '</p>' : ''}
+          ${item.id === 'prison' ? '<div class="score" aria-hidden="true">PUNTOS <span>000</span></div>' : ''}
+        </div>
+      </div>
     </div>
   </section>`).join('');
 
@@ -49,8 +50,8 @@ const cards = document.querySelector('#cards');
 cards.innerHTML = adventures.map((item) => `
   <article class="card ${item.id}">
     <img src="${artwork(item)}" alt="" loading="lazy" decoding="async">
-    <div class="card-copy"><h3>${item.name}</h3><p>${item.short}</p>
-    <button data-choice="${item.id}" aria-label="Elegir ${item.name}">Elegir esta aventura</button></div>
+    <div class="card-copy"><h3>${item.name}</h3>
+    <button data-choice="${item.id}" aria-label="Elegir ${item.name}">Esta</button></div>
   </article>`).join('');
 
 const confirmDialog = document.querySelector('#confirm');
@@ -70,10 +71,10 @@ function showChoice(item, celebrate = false) {
   result.innerHTML = `
     <img class="result-art" src="${artwork(item)}" alt="">
     <div class="result-copy">
-      <h3 id="result-title" tabindex="-1">Aventura elegida.</h3>
+      <h3 id="result-title" tabindex="-1">¡Pues ya tenemos plan!</h3>
       <p>Feliz cumpleaños, Viki ❤️</p>
-      <p>Lo importante no es dónde vayamos.<br>Es que vamos juntos.<br>Te quiero.</p>
-      <p>Tu aventura seleccionada es <strong>${item.name}</strong>.</p>
+      <p>Me hace mucha ilusión ir contigo. Te quiero.</p>
+      <p>Nos vamos a <strong>${item.name}</strong>.</p>
       <div class="actions"><button id="share">Compartir mi elección</button>
       <a class="share-link" target="_blank" rel="noopener" href="https://wa.me/?text=${encodeURIComponent(message)}">WhatsApp</a></div>
       <textarea id="share-text" aria-label="Mensaje para copiar" readonly hidden></textarea>
@@ -138,10 +139,11 @@ function draw() {
   if (motion.matches) return;
   const height = innerHeight;
   for (const stage of stages) {
-    const bounds = stage.getBoundingClientRect();
-    const progress = clamp((height - bounds.top) / (height + bounds.height * .65));
+    const chapter = stage.closest('.chapter');
+    const bounds = chapter.getBoundingClientRect();
+    const progress = clamp((height * .7 - bounds.top) / (bounds.height - height * .15));
     stage.style.setProperty('--p', progress.toFixed(3));
-    if (stage.closest('.terra')) {
+    if (chapter.classList.contains('terra')) {
       const distance = Math.min(railLength - 2, railLength * progress);
       const point = rail.getPointAtLength(distance);
       const next = rail.getPointAtLength(distance + 2);
@@ -163,3 +165,16 @@ motion.addEventListener('change', () => {
 });
 if (motion.matches) score.textContent = '300';
 update();
+if ('IntersectionObserver' in window) {
+  const reveals = new IntersectionObserver((entries, observer) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      entry.target.classList.add('in-view');
+      observer.unobserve(entry.target);
+    }
+  }, { threshold: .2 });
+  for (const beat of document.querySelectorAll('.detail-copy, .card')) {
+    beat.classList.add('reveal');
+    reveals.observe(beat);
+  }
+}
