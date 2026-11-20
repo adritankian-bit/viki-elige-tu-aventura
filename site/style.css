@@ -107,3 +107,8 @@ footer{margin-top:3rem;color:var(--muted);font-size:.875rem}
 .reveal.in-view{animation:beat-in .65s cubic-bezier(.2,.7,.2,1) both}
 @keyframes beat-in{from{opacity:.2;transform:translateY(26px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.stage{position:absolute;width:100%;height:100svh}.chapter .detail-beat{min-height:0;padding-bottom:3rem;background:var(--ink)}}
+.intro .lead{max-width:33rem}
+.detail-layout{display:grid;gap:1rem;align-items:center;width:100%;max-width:69rem}
+.adventure-photo{display:block;width:min(100%,34svh,20rem);height:auto;justify-self:center;border:1px solid var(--accent);box-shadow:0 .8rem 2.5rem #0007}
+.detail-layout .detail-copy{justify-self:center}
+@media(min-width:52rem){.detail-layout{grid-template-columns:1fr 1fr;gap:2rem}.adventure-photo{width:min(100%,46svh,27rem)}}

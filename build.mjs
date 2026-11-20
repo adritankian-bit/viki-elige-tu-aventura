@@ -10,7 +10,7 @@ const html = await readFile(new URL('index.html', site), 'utf8');
 const script = await readFile(new URL('app.js', site), 'utf8');
 const dependencies = [
   ...Array.from(html.matchAll(/(?:src|href)="((?!#)[^":]+)"/g), (match) => match[1]),
-  ...Array.from(script.matchAll(/art: '([^']+)'/g), (match) => 'art/' + match[1])
+  ...Array.from(script.matchAll(/(?:art|photo): '([^']+)'/g), (match) => 'art/' + match[1])
 ];
 for (const path of dependencies) {
   if (!(await stat(new URL(path, site))).isFile()) throw new Error('Recurso inválido: ' + path);

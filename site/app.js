@@ -1,22 +1,22 @@
 const adventures = [
   {
-    id: 'prison', name: 'Prison Island', lines: ['Prison', 'Island'], art: 'prison.svg',
+    id: 'prison', name: 'Prison Island', lines: ['Prison', 'Island'], art: 'prison.svg', photo: 'prison-retrato.webp', alt: 'Dos niños con trajes de presos y carteles de ficha policial',
     place: 'Benalmádena, Málaga',
     thought: 'Aquí nos vamos a picar.',
-    detail: 'Vamos en equipo de sala en sala. Hay pruebas de reflejos, de fuerza y de pensar. A ver cuántas sacamos.'
+    detail: 'Estamos encerrados en una isla prisión. Vamos como equipo de sala en sala. Hay pruebas de reflejos, de fuerza y de pensar. Si no somos unos mantecaos, podremos escapar'
   },
   {
-    id: 'arcano', name: 'El Amuleto Arcano', lines: ['El Amuleto', 'Arcano'], art: 'arcano.svg',
+    id: 'arcano', name: 'El Amuleto Arcano', lines: ['El Amuleto', 'Arcano'], art: 'arcano.svg', photo: 'arcano-retrato.webp', alt: 'Dos pequeños aventureros con un amuleto dorado y un mapa',
     place: 'Torrenigma · Torre del Mar, Málaga',
     thought: 'Tú, yo y un amuleto raro.',
-    detail: 'Tenemos que seguir las pistas y averiguar qué esconde. A ver cuánto tardamos en pedir una pista.'
+    detail: 'Nos perdemos en un bosque siniestro y llegamos a una mansión extraña. La única forma de salir es encontrar un amuleto... y lograr salir con él. Si no lo conseguimos, al menos ya tenemos un pisito donde vivir (para siempre)'
   },
   {
-    id: 'terra', name: 'Terra Mítica', lines: ['Terra', 'Mítica'], art: 'terra.svg',
+    id: 'terra', name: 'Terra Mítica', lines: ['Terra', 'Mítica'], art: 'terra.svg', photo: 'terra-retrato.webp', alt: 'Dos niños con los brazos en alto en una montaña rusa',
     place: 'Benidorm, Alicante',
     thought: 'Los dos gritando como idiotas.',
     detail: 'Un día de montañas rusas y de decir «venga, otra vez».',
-    note: 'Cuando abra la próxima temporada, buscamos fecha.'
+    note: 'Ahora mismo ha terminado la temporada, en cuanto abra podemos buscar fecha'
   }
 ];
 const artwork = (item) => './art/' + item.art;
@@ -36,11 +36,14 @@ chapters.innerHTML = adventures.map((item) => `
         <h2 id="${item.id}-title">${item.lines.join('<br>')}</h2>
       </div>
       <div class="beat detail-beat">
+        <div class="detail-layout">
+          <img class="adventure-photo" src="./art/${item.photo}" alt="${item.alt}" width="1100" height="1100" loading="lazy" decoding="async">
         <div class="detail-copy">
           <h3>${item.thought}</h3>
           <p>${item.detail}</p>
           ${item.note ? '<p class="visit-note">' + item.note + '</p>' : ''}
           ${item.id === 'prison' ? '<div class="score" aria-hidden="true">PUNTOS <span>000</span></div>' : ''}
+        </div>
         </div>
       </div>
     </div>
@@ -173,7 +176,7 @@ if ('IntersectionObserver' in window) {
       observer.unobserve(entry.target);
     }
   }, { threshold: .2 });
-  for (const beat of document.querySelectorAll('.detail-copy, .card')) {
+  for (const beat of document.querySelectorAll('.detail-copy, .adventure-photo, .card')) {
     beat.classList.add('reveal');
     reveals.observe(beat);
   }
